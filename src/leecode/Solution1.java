@@ -1,6 +1,8 @@
 package leecode;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Solution1 {
@@ -47,9 +49,34 @@ public class Solution1 {
         return ans;
     }
 
+    public static int maxEqualRowsAfterFlips(int[][] matrix) {
+        int cl = matrix.length;
+        int rl = matrix[0].length;
+        int max = 0;
+        Map<String, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < cl; i++) {
+            StringBuilder temp = new StringBuilder();
+            for (int j = 0; j < rl; j++) {
+                if (matrix[i][0] == 0) {
+                    temp.append(matrix[i][j]);
+                } else {
+                    temp.append((matrix[i][j] ^ 1));
+                }
+            }
+            String tempStr = temp.toString();
+            max = Math.max(map.getOrDefault(tempStr, 0) + 1, max);
+            map.put(tempStr, map.getOrDefault(tempStr, 0) + 1);
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
-        Solution1 s = new Solution1();
-        String ss = "abcdabcd";
-        System.out.println(s.lengthOfLongestSubstring(ss));
+
+        int[][] arr = {{0, 1}, {1, 1}};//1
+        int[][] arr1 = {{0, 0, 0}, {0, 0, 1}, {1, 1, 0}};//2
+        System.out.println(maxEqualRowsAfterFlips(arr));
+        System.out.println(maxEqualRowsAfterFlips(arr1));
+
     }
 }
