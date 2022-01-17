@@ -56,7 +56,7 @@ public class Floyd {
             }
             System.out.println();
         }
-        System.out.println("====path====");
+        System.out.println("======path====");
         for (int[] ints : path) {
             for (int anInt : ints) {
                 System.out.print(anInt + " ");

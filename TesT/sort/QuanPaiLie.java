@@ -45,7 +45,7 @@ public class QuanPaiLie {
     }
 
     //java: 无法从静态上下文中引用非静态 方法 swap(int[],int,int)
-    //静态方法不能调用静态方法
+    //静态方法不能调用非静态方法
     public void swap(int[] arr, int a, int b) {
         int temp = arr[a];
         arr[a] = arr[b];
@@ -115,8 +115,8 @@ public class QuanPaiLie {
         int[] arr = {1, 3, 2, 1};
         quanPaiLie.core(arr);
 
-        int[] arr1 = {2, 1, 3, 4};
-        quanPaiLie.core1(arr1);
+//        int[] arr1 = {2, 1, 3, 4};
+//        quanPaiLie.core1(arr1);
 
     }
 }

@@ -1,9 +1,6 @@
 package leecode;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Solution1 {
 
@@ -70,13 +67,94 @@ public class Solution1 {
         }
         return max;
     }
+//    int[][] arr = {{0, 1}, {1, 1}};//1
+//    int[][] arr1 = {{0, 0, 0}, {0, 0, 1}, {1, 1, 0}};//2
+//        System.out.println(maxEqualRowsAfterFlips(arr));
+//        System.out.println(maxEqualRowsAfterFlips(arr1));
+
+
+    public static int findUnsortedSubarray(int[] nums) {
+        int i = 0;
+        int j = nums.length - 1;
+        int len = 0;
+        while (i <= j) {
+            int l = 0;
+            if(i == j){
+                len = 0;
+                break;
+            }
+            if (nums[i] == Min(nums, i, j)) {
+                i++;
+            }
+            if (nums[j] == Max(nums, i, j)) {
+                j--;
+            }
+            l = j - i + 1;
+            if (l == len) {
+                break;
+            }
+            len = l;
+        }
+        return len;
+    }
+
+    public static int Min(int[] nums, int i, int j) {
+        int min = Integer.MAX_VALUE;
+        for (int k = i; k < j + 1; k++) {
+            min = Math.min(nums[k], min);
+        }
+        return min;
+    }
+
+    public static int Max(int[] nums, int i, int j) {
+        int max = Integer.MIN_VALUE;
+        for (int k = i; k < j + 1; k++) {
+            max = Math.max(nums[k], max);
+        }
+        return max;
+    }
+    //int[] nums = {2, 6, 4, 8, 10, 9, 15};
+    //int[] nums = {1,2,3,3,5,6};
+//    int[] nums = {1, 2, 3, 3, 3};
+//        System.out.println(findUnsortedSubarray(nums));
+
+    public static int triangleNumber(int[] nums) {
+        int len = nums.length;
+        if (len < 3) {
+            return 0;
+        }
+        int count = 0;
+        Arrays.sort(nums);
+        for (int i = 0; i < len ; i++) {
+            for (int j = i + 1; j < len ; j++) {
+                int k = j + 1;
+                while (k < len && nums[k++] < nums[i] + nums[j]) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static int triangleNumber1(int[] nums) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        int ans = 0;
+        for (int i = 0; i < n; ++i) {
+            int k = i;
+            for (int j = i + 1; j < n; ++j) {
+                while (k + 1 < n && nums[k + 1] < nums[i] + nums[j]) {
+                    ++k;
+                }
+                ans += Math.max(k - j, 0);
+            }
+        }
+        return ans;
+    }
 
     public static void main(String[] args) {
-
-        int[][] arr = {{0, 1}, {1, 1}};//1
-        int[][] arr1 = {{0, 0, 0}, {0, 0, 1}, {1, 1, 0}};//2
-        System.out.println(maxEqualRowsAfterFlips(arr));
-        System.out.println(maxEqualRowsAfterFlips(arr1));
-
+        int[] arr = {2, 2, 3, 4};
+        //int[] arr = {2, 3, 4, 4};
+        System.out.println(triangleNumber(arr));
     }
 }
