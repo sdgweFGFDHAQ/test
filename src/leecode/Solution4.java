@@ -1,7 +1,5 @@
 package leecode;
 
-import org.junit.Test;
-
 import java.util.*;
 
 public class Solution4 {
@@ -17,7 +15,6 @@ public class Solution4 {
         return maxl;
     }
 
-    @Test
     public void t() {
         int[] n = {100, 4, 200, 1, 3, 2};
         System.out.println(longestConsecutive(n));
@@ -255,25 +252,6 @@ public class Solution4 {
 //    int[][] edges = {{0, 1, 100}, {1, 2, 100}, {0, 2, 500}};
 //    int src = 0, dst = 2, k = 1;
 //        System.out.println(findCheapestPrice(n, edges, src, dst, k));
-
-
-    public int deepestLeavesSum(Solution3.TreeNode root) {
-        if (root == null) return 0;
-        Queue<Solution3.TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        int sum = 0;
-        while (!queue.isEmpty()) {
-            sum = 0;
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                Solution3.TreeNode q = queue.poll();
-                sum += q.val;
-                if (q.left != null) queue.offer(q.left);
-                if (q.right != null) queue.offer(q.right);
-            }
-        }
-        return sum;
-    }
 
     public boolean isBoomerang(int[][] points) {
         return (points[2][1] - points[1][1]) * (points[0][0] - points[1][0]) != (points[2][0] - points[1][0]) * (points[0][1] - points[1][1]);

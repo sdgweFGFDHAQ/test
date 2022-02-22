@@ -1,38 +1,8 @@
 package leecode;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
 
 public class Solution2 {
-    public int numSubarraysWithSum(int @NotNull [] nums, int goal) {
-        int count = 0;
-        for (int n = 0; n < nums.length; n++) {
-            int sum = 0;
-            for (int i = n; i < nums.length; i++) {
-                sum += nums[i];
-                if (sum == goal) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
-
-    public int numSubarraysWithSum1(int @NotNull [] nums, int goal) {
-        int count = 0;
-        int[] new_nums = new int[nums.length + 1];
-        int sum = 0;
-        for (int num : nums) {
-            new_nums[sum]++;
-            sum += num;
-
-            if (sum - goal >= 0) {
-                count += new_nums[sum - goal];
-            }
-        }
-        return count;
-    }
 
     public static int minPairSum(int[] nums) {
         int maxnum = 0;
@@ -222,6 +192,29 @@ public class Solution2 {
         return ans;
     }
 
+    public double knightProbability(int n, int k, int row, int column){
+        double[][][] dp = new double[k + 1][n][n];
+        int[][] dirs = {{-2, -1}, {-2, 1}, {2, -1}, {2, 1}, {-1, -2}, {-1, 2}, {1, -2}, {1, 2}};
+
+        for (int step = 0; step <= k; step++){
+            for(int i = 0; i < n; i++){
+                for(int j = 0; j < n; j++){
+                    if(step == 0){
+                        dp[step][i][j] = 1;
+                    }else {
+                        for(int[] dir : dirs){
+                            int ni = i + dir[0], nj = j + dir[1];
+                            if(ni >= 0 && ni <= n && nj >= 0 && nj < n){
+                                dp[step][i][j] += dp[step - 1][ni][nj];
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+        return dp[k][row][column];
+    }
 
     public static void main(String[] args) {
         int[] piles = {5, 4, 9};

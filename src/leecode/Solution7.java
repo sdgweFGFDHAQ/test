@@ -51,8 +51,42 @@ public class Solution7 {
         return ss.substring(0, ss.length() - 1);
     }
 
+    public static int singleNonDuplicate(int[] nums) {
+        int num = -1;
+        int len = nums.length;
+        int l = 0, r = len - 1;
+        while(l != r){
+            int t = ( l + r) / 2;
+            if(nums[t - 1] == nums[t]){
+                r = t;
+            }else if(nums[t] == nums[t + 1]){
+                l = t;
+            }else {
+                num = nums[t];
+            }
+        }
+        return num;
+    }
+
+    public static String pushDominoes(String dominoes) {
+        String result = "";
+        StringBuilder sb = new StringBuilder();
+        int len = dominoes.length();
+        for(int i = 0; i < len; i++){
+            if(i == 0){
+                
+            }else if(i == len - 1){
+
+            }else {
+
+            }
+        }
+        result = sb.toString();
+        return result;
+    }
+
     public static void main(String[] args) {
-        String s = "aa 11 s 2";
-        System.out.println(char_and_num_return(s));
+        int[] nums = {1,1,2,3,3,4,4,8,8};
+        System.out.println(singleNonDuplicate(nums));
     }
 }

@@ -36,6 +36,13 @@ public class Solution8 {
         return value.peek()[1];
     }
 
+    public static boolean isOneBitCharacter(int[] bits) {
+        int len = bits.length;
+        boolean l = (len & 1 ) == 0;
+        boolean r = bits[len - 2] == 1;
+        return !l || !r;
+    }
+
     public static void main(String[] args) {
         Solution8 s8 = new Solution8();
         s8.update(1,2);
@@ -45,5 +52,7 @@ public class Solution8 {
         System.out.println(s8.current());
         System.out.println(s8.maximum());
         System.out.println(s8.minimum());
+        int[] bits = {1,1,1,0};
+        System.out.println(isOneBitCharacter(bits));
     }
 }
